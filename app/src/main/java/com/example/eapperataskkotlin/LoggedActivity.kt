@@ -4,10 +4,8 @@ import android.Manifest
 import android.app.PendingIntent
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.Location
-import android.location.LocationListener
-import android.location.LocationManager
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -60,34 +58,12 @@ class LoggedActivity : AppCompatActivity() {
     }
 
     private fun checkPermissionNeeded() {
-
-        val locationManager = getSystemService(LOCATION_SERVICE) as LocationManager?
-        val locationListener: LocationListener = object : LocationListener {
-            override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-
-            }
-
-            override fun onProviderEnabled(provider: String?) {
-            }
-
-            override fun onProviderDisabled(provider: String?) {
-            }
-
-            override fun onLocationChanged(location: Location) {
-                val locationString = StringBuilder("Longitude: ")
-                    .append(location.longitude.toString())
-                    .append("\nLatitude: ")
-                    .append(location.latitude.toString())
-                    .toString()
-                tv_location.text = locationString
-            }
-        }
-
         Dexter.withActivity(this@LoggedActivity)
             .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             .withListener(object : PermissionListener{
                 override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-                    locationManager!!.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0L, 0f, locationListener)
+                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                    startActivity(intent)
                     getLocation()
                 }
 
