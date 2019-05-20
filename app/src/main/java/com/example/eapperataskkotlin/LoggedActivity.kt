@@ -102,7 +102,7 @@ LoggedActivity : AppCompatActivity() {
         locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
         locationRequest.interval = 5000
         locationRequest.fastestInterval = 3000
-        locationRequest.smallestDisplacement = 1f
+        locationRequest.smallestDisplacement = 0.5f
 
 
     }
