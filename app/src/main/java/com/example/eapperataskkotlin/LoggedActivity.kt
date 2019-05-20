@@ -103,7 +103,5 @@ LoggedActivity : AppCompatActivity() {
         locationRequest.interval = 5000
         locationRequest.fastestInterval = 3000
         locationRequest.smallestDisplacement = 0.5f
-
-
     }
 }
