@@ -16,8 +16,9 @@ class MyLocationService : BroadcastReceiver() {
                 val result = LocationResult.extractResult(intent)
                 if (result != null){
                     val  location = result.lastLocation
-                    val locationString = StringBuilder(location.longitude.toString())
-                        .append("\n")
+                    val locationString = StringBuilder("Longitude: ")
+                        .append(location.longitude.toString())
+                        .append("\nLatitude: ")
                         .append(location.latitude.toString())
                         .toString()
                     try {
