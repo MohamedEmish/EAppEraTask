@@ -62,9 +62,16 @@ class LoggedActivity : AppCompatActivity() {
             .withPermission(Manifest.permission.ACCESS_FINE_LOCATION)
             .withListener(object : PermissionListener{
                 override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-                    val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
-                    startActivity(intent)
-                    getLocation()
+                    if (SavedPreferences.getGPS(this@LoggedActivity) == "off") {
+                        SavedPreferences.setGPS(this@LoggedActivity, "on")
+                        val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                        startActivity(intent)
+                        getLocation()
+
+                    } else {
+                        getLocation()
+
+                    }
                 }
 
                 override fun onPermissionRationaleShouldBeShown(
