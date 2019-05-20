@@ -3,8 +3,6 @@
     <string name="Login">Login</string>
     <string name="start">Start</string>
     <string name="stop">Stop</string>
-    <string name="longitude">Longitude</string>
-    <string name="latitude">Latitude</string>
     <string name="name">Name</string>
     <string name="password">Password</string>
 </resources>
